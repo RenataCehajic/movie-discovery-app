@@ -1,4 +1,16 @@
 .movie-card {
-  display: grid;
-  width: 100px;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 10px 10px 10px;
+  align-items: center;
+}
+
+.movie-card h3 {
+  color: #ff71ce;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

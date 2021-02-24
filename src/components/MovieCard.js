@@ -6,11 +6,10 @@ function MovieCard({ title, year, poster, imdbId }) {
   return (
     <div className="movie-card">
       <Link to={`/movie/${imdbId}`}>
-        <h3>
-          {title} {year}
-        </h3>
+        <h3 className="title">{title}</h3>
+        <h4>{year}</h4>
+        <h4> {poster !== "N/A" ? <img src={poster} /> : <p>no image</p>}</h4>
       </Link>
-      {poster !== "N/A" ? <img src={poster} /> : <p>no image</p>}
     </div>
   );
 }

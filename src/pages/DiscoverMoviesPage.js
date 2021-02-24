@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MovieCard from "../components/MovieCard";
 import { useHistory, useParams } from "react-router-dom";
+import "./DiscoverMoviePage.css";
 
 export default function DiscoverMoviesPage() {
   const [searchText, set_searchText] = useState("");
