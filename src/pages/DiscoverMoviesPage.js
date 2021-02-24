@@ -37,6 +37,7 @@ export default function DiscoverMoviesPage() {
       {movieState.map((movie) => (
         <MovieCard
           key={movie.imdbID}
+          imdbId={movie.imdbID}
           title={movie.Title}
           year={movie.Year}
           poster={movie.Poster}
