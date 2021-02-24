@@ -10,11 +10,7 @@ function MovieCard({ title, year, poster, imdbId }) {
         <h4>{year}</h4>
         <h4>
           {" "}
-          {poster !== "N/A" ? (
-            <img src={poster} alt={poster} />
-          ) : (
-            <p>no image</p>
-          )}
+          {poster !== "N/A" ? <img src={poster} alt={""} /> : <p>no image</p>}
         </h4>
       </Link>
     </div>

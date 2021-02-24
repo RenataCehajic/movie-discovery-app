@@ -32,7 +32,7 @@ export default function MoviePage() {
         {movieData.Title} {movieData.Year}
       </h2>
       <p>{movieData.Genre}</p>
-      <img src={movieData.Poster} alt={`${movieData.Title}'s image`} />
+      <img src={movieData.Poster} alt={`${movieData.Title}'s poster`} />
       <p>IMDB Rating:</p>
       <p>{movieData.imdbRating}</p>
     </div>

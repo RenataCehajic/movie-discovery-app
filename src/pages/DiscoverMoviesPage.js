@@ -18,11 +18,12 @@ export default function DiscoverMoviesPage() {
 
   const route_parameters = useParams();
   const searchedWords = route_parameters;
+  console.log(searchedWords);
 
   useEffect(() => {
     async function fetchData() {
       console.log("Start searching for:", searchText);
-      const queryParam = encodeURIComponent(searchText);
+      // const queryParam = encodeURIComponent(searchText);
 
       set_searchState({ status: "searching" });
 
@@ -38,7 +39,7 @@ export default function DiscoverMoviesPage() {
     if (searchedWords.searchText) {
       fetchData();
     }
-  }, [route_parameters]);
+  }, [searchedWords, searchText]);
 
   return (
     <div>
