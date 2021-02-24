@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function MovieCard({ title, year, poster, imdbId }) {
   return (
     <div className="movie-card">
-      <Link to={`/discover/${imdbId}`}>
+      <Link to={`/movie/${imdbId}`}>
         <h3>
           {title} {year}
         </h3>

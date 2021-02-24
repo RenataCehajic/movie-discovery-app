@@ -1,27 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MovieCard from "../components/MovieCard";
+import { useHistory, useParams } from "react-router-dom";
 
 export default function DiscoverMoviesPage() {
   const [searchText, set_searchText] = useState("");
   const [searchState, set_searchState] = useState({ status: "idle" });
   const [movieState, set_movieState] = useState([]);
 
-  const search = async () => {
-    console.log("Start searching for:", searchText);
-    const queryParam = encodeURIComponent(searchText);
+  const history = useHistory();
 
-    set_searchState({ status: "searching" });
-
-    const response = await axios.get(
-      `https://omdbapi.com/?apikey=e7900a63&s=${queryParam}`
-    );
-
-    console.log("Success!", response.data);
-    set_searchState({ status: "done" });
-    set_movieState(response.data.Search);
-    set_searchText("");
+  const navigateToSearch = () => {
+    const routeParam = encodeURIComponent(searchText);
+    history.push(`/discover/${routeParam}`);
   };
+
+  const route_parameters = useParams();
+  const searchedWords = route_parameters;
+
+  useEffect(() => {
+    async function fetchData() {
+      console.log("Start searching for:", searchText);
+      const queryParam = encodeURIComponent(searchText);
+
+      set_searchState({ status: "searching" });
+
+      const response = await axios.get(
+        `https://omdbapi.com/?s=${searchedWords.searchText}&apikey=e7900a63`
+      );
+
+      console.log("Success!", response.data);
+      set_searchState({ status: "done" });
+      set_movieState(response.data.Search);
+      set_searchText("");
+    }
+    if (searchedWords.searchText) {
+      fetchData();
+    }
+  }, [route_parameters]);
 
   return (
     <div>
@@ -29,10 +45,11 @@ export default function DiscoverMoviesPage() {
       <p>{searchState.status}</p>
       <p>
         <input
+          type="text"
           value={searchText}
           onChange={(event) => set_searchText(event.target.value)}
         />
-        <button onClick={search}>Search</button>
+        <button onClick={navigateToSearch}>Search</button>
       </p>
       {movieState.map((movie) => (
         <MovieCard
